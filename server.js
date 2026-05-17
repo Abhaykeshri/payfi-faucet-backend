@@ -73,6 +73,35 @@ if (process.platform === "win32") {
 }
 
 /* =========================================
+   IMPORT ALICE KEY (RENDER)
+========================================= */
+
+if (process.platform !== "win32") {
+
+  try {
+
+    console.log("Importing alice key...");
+
+    execSync(
+      `echo "horn crater disagree stairs rare shop shed visa guilt clown push police junk claw list worry breeze liar seminar health replace city copy license" | ./payfiblockchaind keys add alice --recover --keyring-backend test --home "/opt/render/.payfiblockchain"`,
+      {
+        shell: "/bin/bash"
+      }
+    );
+
+    console.log("Alice key imported");
+
+  } catch (err) {
+
+    console.log(
+      "Alice key may already exist"
+    );
+
+  }
+
+}
+
+/* =========================================
    CLAIM DATABASE
 ========================================= */
 
@@ -114,10 +143,6 @@ app.get("/", (req, res) => {
   res.send("PayFi Faucet Running");
 
 });
-
-/* =========================================
-   HEALTH
-========================================= */
 
 app.get("/health", (req, res) => {
 
@@ -205,22 +230,6 @@ app.post("/faucet", async (req, res) => {
         "signed.json"
       );
     } catch {}
-
-    /* =====================================
-       TEST BINARY
-    ===================================== */
-
-    console.log("Testing binary...");
-
-    const version =
-    execSync(
-      `${BINARY} version`,
-      {
-        shell: SHELL
-      }
-    ).toString();
-
-    console.log(version);
 
     /* =====================================
        FETCH ACCOUNT
@@ -337,10 +346,6 @@ app.post("/faucet", async (req, res) => {
 
     const tx =
     broadcast.data.tx_response;
-
-    /* =====================================
-       FAILED TX
-    ===================================== */
 
     if (
       tx.code &&
