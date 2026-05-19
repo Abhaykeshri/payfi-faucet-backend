@@ -28,13 +28,13 @@ const SENDER_ADDRESS =
 "payfi1uqseua5zpfgtffdp5mattcegxha3ee68gf4fwt";
 
 const AMOUNT =
-"1payfi";
+"5payfi";
 
 const FEES =
-"2payfi";
+"1payfi";
 
 const GAS =
-"200000";
+"8000";
 
 /* =========================================
    WINDOWS / RENDER
