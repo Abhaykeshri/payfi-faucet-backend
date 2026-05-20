@@ -31,10 +31,10 @@ const AMOUNT =
 "5payfi";
 
 const FEES =
-"1payfi";
+"0.1payfi";
 
 const GAS =
-"120000";
+"200000";
 
 /* =========================================
    WINDOWS / RENDER
